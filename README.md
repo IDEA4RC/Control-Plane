@@ -23,25 +23,23 @@ This deployment uses a kuberntes cluster and the recomended amount of resources 
 
 ## Step-by-step Deployment
 
+First step is having [HELM](https://helm.sh/docs/intro/install/) installed.
 
-After downloading Istio procced with:
+After downloading [Istio](https://istio.io/latest/docs/setup/install/istioctl/) procced with:
 
-Install Istio and enable injection in the datamesh ns
+Install Istio and enable injection in the control-pane name space
 
 ```shell
 istioctl install --set profile=demo -y 
 
+kubectl label namespace control-plane istio-injection=enabled
+
 ```
-Set up a namespace to ensure the encapsulation of the services with mTLS. It also set the Istio sidecar injection automatically
+
+Next install the control plane chart
+
 ```shell
-kubectl apply -f kubernetes/base/001_datamesh-ns.yaml
-```
-Now we enforce the mTLS policy along the namespace we just created and we create the Istio Gateway resource pointing to localhost for local development 
-
-```shell 
-kubectl apply -f kubernetes/base/002_mtls-policy.yaml
-
-kubectl apply -f kubernetes/base/003_gateway.yaml
+helm install control-plane-chart ./control-plane-chart/
 ```
 
 ## Clean up

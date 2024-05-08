@@ -1,0 +1,5 @@
+istioConfig:
+  namespace: idea-control-plane
+  gateway:
+    name: idea-gateway
+    hosts: "*"

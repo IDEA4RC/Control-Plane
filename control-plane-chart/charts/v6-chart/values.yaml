@@ -1,0 +1,8 @@
+auth:
+      postgresPassword: "postgres"
+      username: "postgres"
+      password: "postgres"
+      database: "vantagedb"
+
+global:
+  namespace: control-plane

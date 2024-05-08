@@ -1,8 +1,12 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
 metadata:
-  name: {{ .Values.istioConfig.gateway.name }}
-  namespace: {{ index .Values.istioConfig.namespace }}
+    name: {{ .Values.istioConfig.gateway.name }}
+    namespace: {{ index .Values.global.namespace }}
+    # labels:
+    #   app.kubernetes.io/managed-by: Helm
+    # annotations:
+    #   "helm.sh/hook": "pre-install"
 spec:
   selector:
     istio: ingressgateway

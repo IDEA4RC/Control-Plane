@@ -1,8 +1,13 @@
 apiVersion: security.istio.io/v1beta1
 kind: PeerAuthentication
 metadata:
-  name: strict-mtls-policy
-  namespace: {{ index .Values.istioConfig.namespace }}
+    name: strict-mtls-policy
+    namespace: {{ index .Values.global.namespace }}
+    # labels:
+    #     app.kubernetes.io/managed-by: Helm
+    # annotations:
+    #     "helm.sh/hook": "pre-install"
+  
 spec:
   mtls:
     mode: STRICT

@@ -1,0 +1,75 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+    namespace: {{ index .Values.global.namespace }}
+    name: v6-config
+    labels:
+        app.kubernetes.io/managed-by: Helm
+    annotations:
+        "helm.sh/hook": "pre-install"
+data:
+    config.yaml: |
+        description: IDEA4RC
+
+        server_name: demo
+
+        ip: 0.0.0.0
+
+        port: 5000
+
+        api_path: /api
+
+        server_url: https://cotopaxi.vantage6.ai
+
+        uri: postgresql://username:password@172.17.0.1/database
+
+        allow_drop_all: true
+
+        two_factor_auth: false
+
+  
+        #jwt_secret_key: super-secret-key! # Added as a secret in the k8s cluster
+
+        logging:
+            level: DEBUG
+            file: test.log
+            use_console: true
+            backup_count: 5
+            max_size: 1024
+            format: "%(asctime)s - %(name)-14s - %(levelname)-8s - %(message)s"
+            datefmt: "%Y-%m-%d %H:%M:%S"
+            loggers:
+                - name: urllib3
+                level: warning
+                - name: socketIO-client
+                level: warning
+                - name: engineio.server
+                level: warning
+                - name: socketio.server
+                level: warning
+                - name: sqlalchemy.engine
+                level: warning
+                - name: requests_oauthlib.oauth2_session
+                level: warning
+
+        debug:
+            socketio: false
+            flask: false
+
+        ui:
+            enabled: false #may see later
+            port: 3456
+
+
+        password_policy:
+            max_failed_attempts: 5
+            inactivation_minutes: 15
+            between_user_emails_minutes: 60
+
+        cors_allowed_origins:
+        - https://portal.cotopaxi.vantage6.ai
+        - http://localhost:3456
+
+        algorithm_stores:
+            - name: Community store
+            url: https://store.cotopaxi.vantage6.ai

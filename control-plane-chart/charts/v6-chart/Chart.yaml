@@ -1,0 +1,14 @@
+apiVersion: v2
+name: v6-chart
+description: Vantage 6 HELM chart
+
+type: application
+
+version: 0.1.0
+
+appVersion: "1.16.0"
+
+dependencies:
+  - name: postgresql
+    version: 15.2.8
+    repository: https://charts.bitnami.com/bitnami

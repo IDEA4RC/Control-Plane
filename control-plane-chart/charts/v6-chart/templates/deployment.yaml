@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: {{ index .Values.global.namespace }}
+  name: vantage6-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vantage6-server
+  template:
+    metadata:
+      labels:
+        app: vantage6-server
+    spec:
+      containers:
+      - name: vantage6-server
+        image: harbor2.vantage6.ai/infrastructure/server:cotopaxi
+        ports:
+        - containerPort: 5000
+        volumeMounts:
+        - mountPath: /mnt/config.yaml
+          name: v6-config
+        command: ["/bin/bash", "-c", "/vantage6/vantage6-server/server.sh"]
+      volumes:
+      - name: v6-config
+        configMap:
+          name: v6-config

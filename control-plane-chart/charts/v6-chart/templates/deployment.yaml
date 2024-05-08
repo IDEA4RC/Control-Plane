@@ -19,7 +19,7 @@ spec:
         ports:
         - containerPort: 5000
         volumeMounts:
-        - mountPath: /mnt/config.yaml
+        - mountPath: /mnt
           name: v6-config
         command: ["/bin/bash", "-c", "/vantage6/vantage6-server/server.sh"]
       volumes:

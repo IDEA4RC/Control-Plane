@@ -32,6 +32,8 @@ Install Istio and enable injection in the control-pane name space
 ```shell
 istioctl install --set profile=demo -y 
 
+kubectl create namespace control-plane
+
 kubectl label namespace control-plane istio-injection=enabled
 
 ```

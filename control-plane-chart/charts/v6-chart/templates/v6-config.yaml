@@ -21,7 +21,7 @@ data:
 
         server_url: https://cotopaxi.vantage6.ai
 
-        uri: postgresql://username:password@172.17.0.1/database
+        uri: postgresql://admin:password@control-plane-postgresql.default.svc.cluster.local/postgres
 
         allow_drop_all: true
 
@@ -67,8 +67,8 @@ data:
             between_user_emails_minutes: 60
 
         cors_allowed_origins:
-        - https://portal.cotopaxi.vantage6.ai
-        - http://localhost:3456
+        - https://portal.cotopaxi.vantage6.ai #change with dns
+        - http://localhost:3456 #Change with the UI k8s svc
 
         algorithm_stores:
             - name: Community store

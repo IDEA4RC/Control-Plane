@@ -1,8 +1,10 @@
-auth:
-      postgresPassword: "postgres"
-      username: "postgres"
-      password: "postgres"
-      database: "vantagedb"
-
-global:
-  namespace: control-plane
+postgresql:
+  enabled: true
+  primary:
+    containerSecurityContext:
+      readOnlyRootFilesystem: true
+  auth:
+    username: admin
+    database: postgres
+    password: password
+    postgresPassword: postgres_password

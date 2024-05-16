@@ -27,7 +27,6 @@ data:
 
         two_factor_auth: false
 
-  
         #jwt_secret_key: super-secret-key! # Added as a secret in the k8s cluster
 
         logging:

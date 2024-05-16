@@ -10,25 +10,14 @@ metadata:
 data:
     config.yaml: |
         description: IDEA4RC
-
         server_name: demo
-
         ip: 0.0.0.0
-
         port: 5000
-
         api_path: /api
-
-        server_url: https://cotopaxi.vantage6.ai
-
+        server_url: http://localhost
         uri: postgresql://admin:password@control-plane-postgresql.default.svc.cluster.local/postgres
-
         allow_drop_all: true
-
         two_factor_auth: false
-
-        #jwt_secret_key: super-secret-key! # Added as a secret in the k8s cluster
-
         logging:
             level: DEBUG
             file: test.log
@@ -38,37 +27,31 @@ data:
             format: "%(asctime)s - %(name)-14s - %(levelname)-8s - %(message)s"
             datefmt: "%Y-%m-%d %H:%M:%S"
             loggers:
-                - name: urllib3
+              - name: urllib3
                 level: warning
-                - name: socketIO-client
+              - name: socketIO-client
                 level: warning
-                - name: engineio.server
+              - name: engineio.server
                 level: warning
-                - name: socketio.server
+              - name: socketio.server
                 level: warning
-                - name: sqlalchemy.engine
+              - name: sqlalchemy.engine
                 level: warning
-                - name: requests_oauthlib.oauth2_session
+              - name: requests_oauthlib.oauth2_session
                 level: warning
-
         debug:
             socketio: false
             flask: false
-
         ui:
-            enabled: false #may see later
+            enabled: false
             port: 3456
-
-
         password_policy:
             max_failed_attempts: 5
             inactivation_minutes: 15
             between_user_emails_minutes: 60
-
         cors_allowed_origins:
-        - https://portal.cotopaxi.vantage6.ai #change with dns
-        - http://localhost:3456 #Change with the UI k8s svc
-
+            - https://portal.cotopaxi.vantage6.ai
+            - http://localhost
         algorithm_stores:
             - name: Community store
-            url: https://store.cotopaxi.vantage6.ai
+              url: https://store.cotopaxi.vantage6.ai
